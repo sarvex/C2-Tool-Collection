@@ -34,11 +34,11 @@ CURRENT_PATH = os.path.abspath(os.path.dirname(__file__))
 
 
 def bof_path64(name, arch):  # arch is either 64 or 32
-    return "{}/{}.o".format(name, name) if arch == 64 else ""
+    return f"{name}/{name}.o" if arch == 64 else ""
 
 
 def bof_path(name, arch):  # arch is either 64 or 32
-    return "{}/{}.x{}.o".format(name, name, 64 if arch == 64 else 86)
+    return f"{name}/{name}.x{64 if arch == 64 else 86}.o"
 
 
 class OTCBOFBaseClass(
@@ -386,8 +386,4 @@ if __name__ == "__main__":
                 instance_of_obj = obj()
                 instance_of_obj.test()
             except Exception as error:
-                print(
-                    "[!] Error during test {}: {}".format(
-                        type(error).__name__, name, str(error)
-                    )
-                )
+                print(f"[!] Error during test {type(error).__name__}: {name}")
