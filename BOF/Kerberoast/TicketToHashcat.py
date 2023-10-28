@@ -18,9 +18,9 @@ if __name__ == "__main__":
         fd = fd.read()
         tickets = re.findall(r"<TICKET>\s+([^<]+)</TICKET>", fd.decode("utf-8"))
         for ticket in tickets:
-            # Extract sAMAccountName and AP_REQ data
-            extract = re.search(r"sAMAccountName = ([^\s]+)([^<]+)", ticket)
-            if extract:
+            if extract := re.search(
+                r"sAMAccountName = ([^\s]+)([^<]+)", ticket
+            ):
                 sAMAccountName = extract.group(1).strip()
                 # Base64 decode.
                 dec = base64.b64decode(extract.group(2))
